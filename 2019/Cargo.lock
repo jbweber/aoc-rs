@@ -18,6 +18,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4c95c10ba0b00a02636238b814946408b1322d5ac4760326e6fb8ec956d85775"
 
 [[package]]
+name = "aoc"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "rstest",
+]
+
+[[package]]
 name = "autocfg"
 version = "1.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -42,6 +50,7 @@ name = "day02"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "aoc",
  "rstest",
 ]
 
