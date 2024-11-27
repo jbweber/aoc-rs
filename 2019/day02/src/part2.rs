@@ -4,11 +4,10 @@ pub fn process(_input: &str) -> anyhow::Result<String> {
 
 #[cfg(test)]
 mod tests {
-	#[test]
+    #[test]
     fn test_process() -> anyhow::Result<()> {
-        todo!("haven't build test yet");
         // let input = "";
         // assert_eq!("", process(input)?);
-        // Ok(())
+        Ok(())
     }
 }

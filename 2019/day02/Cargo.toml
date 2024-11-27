@@ -12,6 +12,7 @@ name = "day02-part2"
 path = "src/bin/part2.rs"
 
 [dependencies]
+aoc.path = "../aoc"
 anyhow = {workspace = true}
 
 [dev-dependencies]
