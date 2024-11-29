@@ -12,7 +12,8 @@ name = "day03-part2"
 path = "src/bin/part2.rs"
 
 [dependencies]
-anyhow = {workspace = true}
+anyhow = { workspace = true }
+nom = { workspace = true }
 
 [dev-dependencies]
 rstest = { workspace = true }
