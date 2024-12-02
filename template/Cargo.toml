@@ -4,12 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [[bin]]
-name = "{{project-name}}-part1"
-path = "src/bin/part1.rs"
-
-[[bin]]
-name = "{{project-name}}-part2"
-path = "src/bin/part2.rs"
+name = "{{project-name}}"
+path = "src/bin/main.rs"
 
 [dependencies]
 anyhow = {workspace = true}
