@@ -2,15 +2,26 @@ pub fn process(input: &str) -> anyhow::Result<String> {
     let mut col1 = vec![];
     let mut col2 = vec![];
 
-    input.lines().map(|l| l.split_ascii_whitespace().filter_map(|s| s.parse::<u32>().ok()).collect::<Vec<_>>()).for_each(|v| {
-        col1.push(v[0]);
-        col2.push(v[1]);
-    });
+    input
+        .lines()
+        .map(|l| {
+            l.split_ascii_whitespace()
+                .filter_map(|s| s.parse::<u32>().ok())
+                .collect::<Vec<_>>()
+        })
+        .for_each(|v| {
+            col1.push(v[0]);
+            col2.push(v[1]);
+        });
 
     col1.sort_unstable();
     col2.sort_unstable();
 
-    let result = col1.iter().zip(col2.iter()).map(|(a, b)| a.abs_diff(*b)).sum::<u32>();
+    let result = col1
+        .iter()
+        .zip(col2.iter())
+        .map(|(a, b)| a.abs_diff(*b))
+        .sum::<u32>();
 
     Ok(result.to_string())
 }
