@@ -23,14 +23,14 @@ impl Report {
             safe: false,
         };
 
-        &report.safety_check();
+        report.safety_check();
 
         report
     }
 
     fn safety_check(&mut self) {
         self.safe = false;
-        for (idx, level) in self.levels.iter().enumerate() {
+        for (idx, _) in self.levels.iter().enumerate() {
             if idx == self.levels.len() - 1 {
                 break;
             }
