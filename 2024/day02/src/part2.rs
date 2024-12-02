@@ -23,14 +23,14 @@ impl Report {
             safe: false,
         };
 
-        &report.safety_check();
+        report.safety_check();
 
         report
     }
 
     fn safety_check(&mut self) {
-        let mut unsafe_levels = 0;
-        for (idx, level) in self.levels.iter().enumerate() {
+        self.safe = false;
+        for (idx, _) in self.levels.iter().enumerate() {
             if idx == self.levels.len() - 1 {
                 break;
             }
@@ -39,6 +39,7 @@ impl Report {
             if first < second && self.direction == Direction::Increasing {
                 let diff = first.abs_diff(second);
                 if diff >= 1 && diff <= 3 {
+                    self.safe = true;
                     continue;
                 }
             }
@@ -46,19 +47,13 @@ impl Report {
             if second < first && self.direction == Direction::Decreasing {
                 let diff = first.abs_diff(second);
                 if diff >= 1 && diff <= 3 {
+                    self.safe = true;
                     continue;
                 }
             }
 
-            unsafe_levels += 1;
-        }
-
-        dbg!(&unsafe_levels);
-
-        if unsafe_levels <= 1 {
-            self.safe = true;
-        } else {
             self.safe = false;
+            break;
         }
     }
 }
@@ -81,9 +76,25 @@ pub fn process(input: &str) -> anyhow::Result<String> {
         })
         .collect::<Vec<_>>();
 
-    let result = reports.iter().filter(|r| r.safe).count();
+    let mut safe = 0;
+    for report in reports {
+        if report.safe {
+            safe += 1;
+            continue;
+        }
 
-    Ok(result.to_string())
+        for idx in 0..report.levels.len() {
+            let mut level = report.levels.clone();
+            level.remove(idx);
+            let new_report = Report::new(level);
+            if new_report.safe {
+                safe += 1;
+                break;
+            }
+        }
+    }
+
+    Ok(safe.to_string())
 }
 
 #[cfg(test)]
