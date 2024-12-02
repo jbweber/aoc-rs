@@ -9,7 +9,7 @@ mod tests {
 	#[test]
     fn test_process() -> anyhow::Result<()> {
         let input = "";
-        assert_eq!("", process(input)?);
+        assert_eq!("part 2", process(input)?);
         Ok(())
     }
 }
