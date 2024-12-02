@@ -38,7 +38,7 @@ impl Report {
             let second = self.levels[idx + 1];
             if first < second && self.direction == Direction::Increasing {
                 let diff = first.abs_diff(second);
-                if diff >= 1 && diff <= 3 {
+                if (1..=3).contains(&diff) {
                     self.safe = true;
                     continue;
                 }
@@ -46,7 +46,7 @@ impl Report {
 
             if second < first && self.direction == Direction::Decreasing {
                 let diff = first.abs_diff(second);
-                if diff >= 1 && diff <= 3 {
+                if (1..=3).contains(&diff) {
                     self.safe = true;
                     continue;
                 }
