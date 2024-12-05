@@ -1,5 +1,3 @@
-use std::collections::HashSet;
-
 pub fn process(input: &str) -> anyhow::Result<String> {
     let lines = input
         .lines()
