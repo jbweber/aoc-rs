@@ -1,31 +1,18 @@
-pub fn process(input: &str) -> anyhow::Result<String> {
-    let input = input
-        .lines()
-        .map(|line| {
-            if let Some((a, b)) = line.split_once(":") {
-                let a = a.parse::<i64>().expect("invalid number");
-                let b = b
-                    .trim()
-                    .split_ascii_whitespace()
-                    .map(|word| word.parse::<i64>().expect("invalid number"))
-                    .collect::<Vec<_>>();
-                (a, b)
-            } else {
-                unreachable!("invalid input")
-            }
-        })
-        .collect::<Vec<_>>();
+use crate::parse_input;
 
-    let result = input
+pub fn process(input: &str) -> anyhow::Result<String> {
+    let (_, parsed_input) = parse_input(input).expect("valid input");
+
+    let result = parsed_input
         .iter()
         .filter(|i| check(i.0, &i.1))
         .map(|i| i.0)
-        .sum::<i64>();
+        .sum::<u64>();
 
     Ok(result.to_string())
 }
 
-fn check(a: i64, b: &Vec<i64>) -> bool {
+fn check(a: u64, b: &Vec<u64>) -> bool {
     let ops = b.len() - 1;
     for bits in 0..(1 << ops) {
         let mut result = b[0];
