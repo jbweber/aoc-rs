@@ -1,0 +1,14 @@
+[package]
+name = "day07"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "day07"
+path = "src/bin/main.rs"
+
+[dependencies]
+anyhow = {workspace = true}
+
+[dev-dependencies]
+rstest = { workspace = true }
